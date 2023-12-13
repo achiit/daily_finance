@@ -110,33 +110,34 @@ class _MyPhoneState extends State<MyPhone> {
                     ),
                     onPressed: () {
                       print('${countrycodecontroller.text + phone}');
-                      try {
-                        FirebaseAuth.instance.verifyPhoneNumber(
-                          phoneNumber: '${countrycodecontroller.text + phone}',
-                          verificationCompleted:
-                              (PhoneAuthCredential credential) {},
-                          verificationFailed: (FirebaseAuthException e) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text("Wrong phone number entered"),
-                                backgroundColor: Colors.green,
-                              ),
-                            );
-                          },
-                          codeSent: (String verificationId, int? resendToken) {
-                            MyPhone.verify = verificationId;
-                            Navigator.pushNamed(context, "verify");
-                          },
-                          codeAutoRetrievalTimeout: (String verificationId) {},
-                        );
-                      } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Wrong phone number entered"),
-                            backgroundColor: Colors.green,
-                          ),
-                        );
-                      }
+                      // try {
+                      //   FirebaseAuth.instance.verifyPhoneNumber(
+                      //     phoneNumber: '${countrycodecontroller.text + phone}',
+                      //     verificationCompleted:
+                      //         (PhoneAuthCredential credential) {},
+                      //     verificationFailed: (FirebaseAuthException e) {
+                      //       ScaffoldMessenger.of(context).showSnackBar(
+                      //         SnackBar(
+                      //           content: Text("Wrong phone number entered"),
+                      //           backgroundColor: Colors.green,
+                      //         ),
+                      //       );
+                      //     },
+                      //     codeSent: (String verificationId, int? resendToken) {
+                      //       MyPhone.verify = verificationId;
+                      //       Navigator.pushNamed(context, "verify");
+                      //     },
+                      //     codeAutoRetrievalTimeout: (String verificationId) {},
+                      //   );
+                      // } catch (e) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     SnackBar(
+                      //       content: Text("Wrong phone number entered"),
+                      //       backgroundColor: Colors.green,
+                      //     ),
+                      //   );
+                      // }
+                      Navigator.pushNamed(context, "verify");
                     },
                   ),
                 ),

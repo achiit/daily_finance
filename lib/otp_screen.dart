@@ -84,24 +84,26 @@ class _MyVerifyState extends State<MyVerify> {
                     height: 45,
                     child: ElevatedButton(
                       onPressed: () async {
-                        try {
-                          PhoneAuthCredential credential =
-                              PhoneAuthProvider.credential(
-                                  verificationId: MyPhone.verify,
-                                  smsCode: code);
-                          await auth.signInWithCredential(credential);
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, 'home', (route) => false);
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("Wrong OTP"),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                          print("wrong otp");
-                        }
-                      },
+                        // try {
+                        //   PhoneAuthCredential credential =
+                        //       PhoneAuthProvider.credential(
+                        //           verificationId: MyPhone.verify,
+                        //           smsCode: code);
+                        //   await auth.signInWithCredential(credential);
+                        //   Navigator.pushNamedAndRemoveUntil(
+                        //       context, 'home', (route) => false);
+                        // } catch (e) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     SnackBar(
+                        //       content: Text("Wrong OTP"),
+                        //       backgroundColor: Colors.green,
+                        //     ),
+                        //   );
+                        //   print("wrong otp");
+                        // }/
+                        Navigator.pushNamedAndRemoveUntil(
+                             context, 'home', (route) => false);
+                      }, 
                       child: Text(
                         "Verify Code",
                       ),
