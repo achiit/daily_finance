@@ -1,3 +1,4 @@
+import 'package:app8/dashboard.dart';
 import 'package:app8/login.dart';
 import 'package:app8/otp_screen.dart';
 import 'package:app8/profile.dart';
@@ -24,7 +25,10 @@ Future<void> main() async {
     routes: {
       'phone': (context) => MyPhone(),
       'verify': (context) => MyVerify(),
-      'home': (context) => HomeScreen()
+      'home': (context) => HomeScreen(),
+      'dashboard': (context) => DashboardScreen(),
+      
+
     },
   ));
 }

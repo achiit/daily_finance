@@ -183,7 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // Save Profile Button
                   ElevatedButton(
-                    onPressed: saveProfile,
+                    onPressed:(){
+                    Navigator.pushNamed(context, "dashboard");
+
+                    },
                     child: Text('Save Profile'),
                   ),
                 ],
