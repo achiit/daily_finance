@@ -1,5 +1,5 @@
-import 'package:app8/dashboard.dart';
 import 'package:app8/login.dart';
+import 'package:app8/menu.dart';
 import 'package:app8/otp_screen.dart';
 import 'package:app8/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,8 +26,8 @@ Future<void> main() async {
       'phone': (context) => MyPhone(),
       'verify': (context) => MyVerify(),
       'home': (context) => HomeScreen(),
-      'dashboard': (context) => DashboardScreen(),
-      
+      'menu': (context) => Menu(),
+
 
     },
   ));

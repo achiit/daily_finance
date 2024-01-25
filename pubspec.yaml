@@ -41,6 +41,7 @@ dependencies:
   pinput: ^2.2.31
   image_picker: ^1.0.5 # Add this line for the image_picker package
   fl_chart: ^0.40.0 # Make sure to check for the latest version on pub.dev
+  flutter_svg: ^2.0.9
 
 
 dev_dependencies:
