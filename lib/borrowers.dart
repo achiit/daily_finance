@@ -148,9 +148,11 @@ class _BorrowerState extends State<Borrower> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.menu),
                 onPressed: () {},
               ),
+              
+              
               IconButton(
                 icon: Icon(Icons.people),
                 onPressed: () {
@@ -160,13 +162,14 @@ class _BorrowerState extends State<Borrower> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.bar_chart),
+                icon: Icon(Icons.home),
                 onPressed: () {},
               ),
               IconButton(
-                icon: Icon(Icons.menu),
+                icon: Icon(Icons.bar_chart),
                 onPressed: () {},
               ),
+              
               IconButton(
                 icon: Icon(Icons.logout_outlined),
                 onPressed: () {},
