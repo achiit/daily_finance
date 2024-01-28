@@ -1,39 +1,24 @@
 import 'dart:io';
+import 'package:app8/add.dart';
+import 'package:app8/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Firebase Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class profile extends StatefulWidget {
+  const profile({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<profile> createState() => _profileState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _profileState extends State<profile> {
   String selectedGender = '';
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController incomeController = TextEditingController(); // Added incomeController
   final TextEditingController ageController = TextEditingController();
   XFile? _photoImageFile;
   XFile? _idProofImageFile;
@@ -41,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Colors.green,
         title: Text("Profile"),
       ),
       body: SafeArea(
@@ -91,13 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Text(
-                        'Age',
+                        'Income/Salary (INR)',
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
                   ),
                   TextFormField(
-                    controller: ageController,
+                    controller: incomeController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(width: 2),
@@ -106,58 +91,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 20),
-
-                  // Custom Image Input Field for Photo
-                  ImageInputField(
-                    labelText: 'Upload your Photo',
-                    onImageSelected: (XFile? image) {
-                      setState(() {
-                        _photoImageFile = image;
-                      });
-                    },
-                    initialImage: _photoImageFile,
-                  ),
-
-                  // Display selected photo for Photo
-                  if (_photoImageFile != null)
-                    Image.file(
-                      File(_photoImageFile!.path),
-                      height: 100,
-                      width: 100,
-                    ),
-
-                  SizedBox(height: 20),
-
-                  // Custom Image Input Field for ID proof
-                  ImageInputField(
-                    labelText: 'Upload your ID Proof',
-                    onImageSelected: (XFile? image) {
-                      setState(() {
-                        _idProofImageFile = image;
-                      });
-                    },
-                    initialImage: _idProofImageFile,
-                  ),
-
-                  // Display selected photo for ID proof
-                  if (_idProofImageFile != null)
-                    Image.file(
-                      File(_idProofImageFile!.path),
-                      height: 100,
-                      width: 100,
-                    ),
-
-                  SizedBox(height: 20),
-
-                  // Select Your Gender
-                  Text(
-                    'Select Your Gender',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      Text(
+                        'Gender',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SizedBox(width: 10),
                       GenderOption(
                         gender: 'Male',
                         isSelected: selectedGender == 'Male',
@@ -167,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           });
                         },
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       GenderOption(
                         gender: 'Female',
                         isSelected: selectedGender == 'Female',
@@ -179,15 +119,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 70),
 
                   // Save Profile Button
                   ElevatedButton(
-                    onPressed:(){
-                    Navigator.pushNamed(context, "menu");
-
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
                     },
                     child: Text('Save Profile'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.2),
+                      minimumSize: Size(double.infinity, 50),backgroundColor: Colors.green,
+                    ),
                   ),
                 ],
               ),
@@ -205,6 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser?.uid).set({
     //   'name': nameController.text,
     //   'phone': phoneController.text,
+    //   'income': incomeController.text,
     //   'age': ageController.text,
     //   'gender': selectedGender,
     //   'photoImagePath': _photoImageFile?.path,
@@ -290,7 +238,7 @@ class GenderOption extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.blue : Colors.grey,
+          color: isSelected ? Colors.green : Colors.grey,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
