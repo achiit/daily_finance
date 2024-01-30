@@ -1,5 +1,6 @@
 import 'package:app8/add.dart';
 import 'package:app8/profile.dart';
+import 'package:app8/settings.dart';
 import 'package:flutter/material.dart';
 
 class Transaction {
@@ -46,6 +47,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text('Home'),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -133,8 +135,9 @@ class HomeScreen extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                // TODO: Handle view statistics
-              },
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => settings()));
+                            },
               icon: Icon(Icons.settings),
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:app8/login.dart';
 import 'package:app8/otp_screen.dart';
 import 'package:app8/profile.dart';
+import 'package:app8/settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ Future<void> main() async {
       'verify': (context) => MyVerify(),
       'home': (context) => profile(),
       // 'menu': (context) => Menu(),
+      'setting': (context) => settings(),
+
 
 
     },
