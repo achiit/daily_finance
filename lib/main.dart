@@ -16,21 +16,51 @@ String isLogin() {
   }
 }
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(
-    initialRoute: isLogin(),
-    debugShowCheckedModeBanner: false,
-    routes: {
-      'phone': (context) => MyPhone(),
-      'verify': (context) => MyVerify(),
-      'home': (context) => profile(),
-      // 'menu': (context) => Menu(),
-      'setting': (context) => settings(),
+  runApp(MyApp());
+}
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      routes: {
+        'phone': (context) => MyPhone(),
+        'verify': (context) => MyVerify(),
+        'home': (context) => profile(),
+        'setting': (context) => settings(),
+      },
+    );
+  }
+}
 
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
 
-    },
-  ));
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Wait for 3 seconds and then navigate to the appropriate screen
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, isLogin());
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Image.asset('assets/splash.png', width: 150, height: 150),
+            
+      ),
+    );
+  }
 }
